@@ -3,12 +3,12 @@ pipeline{
     stages{
         stage('git checkout'){
             steps{
-                sh 'git repository url'
+                sh 'https://github.com/Ram8319/maven-project.git'
             }
         }
         stage('maven build'){
             steps{
-                sh 'maven command'
+                sh 'mvn clean package'
             }
         }
         stage('sonar checks'){
@@ -21,4 +21,4 @@ pipeline{
                 }
             }
         }
-    }
+}
