@@ -1,15 +1,24 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage ('gitcheckout') {
-            steps {
-                sh 'git clone https://github.com/Ram8319/maven-project.git'
+    stages{
+        stage('git checkout'){
+            steps{
+                sh 'git repository url'
             }
         }
-        stage ('maven build') {
-           steps {
-               sh 'mvn clean package'
-           } 
+        stage('maven build'){
+            steps{
+                sh 'maven command'
+            }
+        }
+        stage('sonar checks'){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonar-pip-token') {
+                        sh 'mvn sonar:sonar'
+                      }
+                    }
+                }
+            }
         }
     }
-}
