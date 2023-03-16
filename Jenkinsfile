@@ -12,5 +12,26 @@ pipeline {
       }
     }
 
+    stage('maven build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+
+    stage('sonar checks') {
+      steps {
+        withSonarQubeEnv(installationName: 'sonar', credentialsId: 'sonar-token', envOnly: true) {
+          sh 'mvn sonar:sonar'
+        }
+
+      }
+    }
+
+    stage('nexus repository') {
+      steps {
+        sh 'mvn deploy'
+      }
+    }
+
   }
 }
