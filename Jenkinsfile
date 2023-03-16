@@ -27,9 +27,9 @@ pipeline {
       }
     }
 
-    stage('nexus repository') {
+    stage('tomcat deploy') {
       steps {
-        sh 'mvn deploy'
+        sh 'scp /home/ubuntu/workspace/maven-project_master/webapp/target/webapp.war 172.31.41.105:/opt/tomcat/webapps'
       }
     }
 
