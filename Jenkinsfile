@@ -20,7 +20,7 @@ pipeline {
 
     stage('tomcat deploy') {
       steps {
-        sh 'scp /home/ubuntu/workspace/maven-project_master/webapp/target/webapp.war 172.31.3.101:/opt/tomcat/webapps'
+        sh 'sudo scp /home/ubuntu/workspace/maven-project_master/webapp/target/webapp.war 172.31.3.101:/opt/tomcat/webapps'
       }
     }
 
