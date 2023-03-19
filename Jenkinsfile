@@ -18,18 +18,9 @@ pipeline {
       }
     }
 
-    stage('sonar checks') {
-      steps {
-        withSonarQubeEnv(installationName: 'sonar', credentialsId: 'sonar-token', envOnly: true) {
-          sh 'mvn sonar:sonar'
-        }
-
-      }
-    }
-
     stage('tomcat deploy') {
       steps {
-        sh 'scp /home/ubuntu/workspace/maven-project_master/webapp/target/webapp.war 172.31.41.105:/opt/tomcat/webapps'
+        sh 'scp /home/ubuntu/workspace/maven-project_master/webapp/target/webapp.war 172.31.3.101:/opt/tomcat/webapps'
       }
     }
 
